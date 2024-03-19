@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--文件对应：SelectMapper-->
+<mapper namespace="com.cyr.mysqllearning.mapper.DynamicSQLMapper">
+    <!--int insertMoreByList(@Param("emps") List<Emp> emps);-->
+    <insert id="insertMoreByList">
+        insert into t_emp values
+        <foreach collection="emps" item="emp" separator=",">
+            (null,#{emp.empName},#{emp.age},#{emp.sex},#{emp.email},#{emp.dept.did},#{emp.dept.deptName})
+        </foreach>
+    </insert>
+    <!--int deleteMoreByArray(Integer[] eids);-->
+    <delete id="deleteMoreByArray">
+        delete from t_emp where eid in
+        <foreach collection="eids" item="eid" separator="," open="(" close=")">
+            #{eid}
+        </foreach>
+    </delete>
+
+
+    <!--List<Emp> getEmpByCondition(Emp emp);-->
+    <select id="getEmpByCondition" resultType="com.cyr.mysqllearning.pojo.Emp">
+        select * from t_emp where 1=1
+        <if test="empName!=null and empName!=''">
+            and emp_name=#{empName}
+        </if>
+        <if test="age!=null and age!=''">
+            and age=#{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            and sex = #{sex}
+        </if>
+        <if test="email != null and email !=''">
+            and email = #{email}
+        </if>
+    </select>
+
+<!--    &lt;!&ndash;List<Emp> getEmpByCondition(Emp emp);&ndash;&gt;-->
+<!--    <select id="getEmpByCondition" resultType="com.cyr.mybatis.pojo.Emp">-->
+<!--        select * from t_emp-->
+<!--        <where>-->
+<!--            <if test="empName != null and empName !=''">-->
+<!--                emp_name = #{empName}-->
+<!--            </if>-->
+<!--            <if test="age != null and age !=''">-->
+<!--                and age = #{age}-->
+<!--            </if>-->
+<!--            <if test="sex != null and sex !=''">-->
+<!--                and sex = #{sex}-->
+<!--            </if>-->
+<!--            <if test="email != null and email !=''">-->
+<!--                and email = #{email}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+    <!--List<Emp> getEmpByCondition(Emp emp);-->
+<!--    <select id="getEmpByCondition" resultType="com.cyr.mybatis.pojo.Emp">-->
+<!--        select * from t_emp-->
+<!--        <trim prefix="where" suffixOverrides="and|or">-->
+<!--            <if test="empName != null and empName !=''">-->
+<!--                emp_name = #{empName} and-->
+<!--            </if>-->
+<!--            <if test="age != null and age !=''">-->
+<!--                age = #{age} and-->
+<!--            </if>-->
+<!--            <if test="sex != null and sex !=''">-->
+<!--                sex = #{sex} or-->
+<!--            </if>-->
+<!--            <if test="email != null and email !=''">-->
+<!--                email = #{email}-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--    </select>-->
+
+<!--    <select id="getEmpByCondition" resultType="com.cyr.mybatis.pojo.Emp">-->
+<!--        select * from t_emp-->
+<!--        <where>-->
+<!--            <choose>-->
+<!--                <when test="empName != null and empName != ''">-->
+<!--                    emp_name = #{empName}-->
+<!--                </when>-->
+<!--                <when test="age != null and age != ''">-->
+<!--                    age = #{age}-->
+<!--                </when>-->
+<!--                <when test="sex != null and sex != ''">-->
+<!--                    sex = #{sex}-->
+<!--                </when>-->
+<!--                <when test="email != null and email != ''">-->
+<!--                    email = #{email}-->
+<!--                </when>-->
+<!--                <otherwise>-->
+<!--                    did = 1-->
+<!--                </otherwise>-->
+<!--            </choose>-->
+<!--        </where>-->
+<!--    </select>-->
+
+</mapper>

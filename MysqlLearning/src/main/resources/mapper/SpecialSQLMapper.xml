@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--文件对应：UserMapper-->
+<mapper namespace="com.cyr.mysqllearning.mapper.SpecialSQLMapper">
+    <!--void insertUser(User user);-->
+    <insert id="insertUser" parameterType="com.cyr.mysqllearning.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values (null,#{username},#{password},#{age},#{sex},#{email})
+    </insert>
+
+    <delete id="deleteMore">
+        delete from t_user where id in (${ids})
+    </delete>
+
+    <!--    List<User> getUserByLike(@Param("username") String username);-->
+    <select id="getUserByLike" resultType="com.cyr.mysqllearning.pojo.User">
+        select * from t_user where username like "%"#{username}"%"
+    </select>
+    <select id="getUserByTable" resultType="com.cyr.mysqllearning.pojo.User">
+        select * from ${tableName}
+    </select>
+</mapper>
