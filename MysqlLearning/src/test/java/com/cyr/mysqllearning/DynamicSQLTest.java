@@ -48,8 +48,8 @@ public class DynamicSQLTest {
 
     @Test
     public void testPageHelper() throws IOException {
-        //访问第一页，每页四条数据
-        PageHelper.startPage(1,4);
+        //访问第一页，每页二条数据
+        PageHelper.startPage(1,2);
         List<Emp> emps = mapper.getEmpByCondition(null);
         PageInfo<Emp> page = new PageInfo<>(emps,5);
         System.out.println(page);

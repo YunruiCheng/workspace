@@ -7,3 +7,29 @@ spring:
   redis:
     host: localhost
     port: 6379
+
+# mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.cyr.mysqllearning.pojo  # 注意：对应实体类的路径
+  configuration:
+    #org.apache.ibatis.logging.stdout.StdOutImpl 控制台打印sql语句方便调试sql语句执行错误
+    #org.apache.ibatis.logging.log4j2.Log4j2Impl:这个不在控制台打印查询结果,但是在log4j中打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
+
+# pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  pageSizeZero: false #pageSize=0
+
+
+# 指定log4j2作为日志记录
+#logging:
+#  config: classpath:log4j2.xml
+#  level:
+#    #这个指定你的dao层，也就是mapper文件的所在包
+#    com.cyr.mysqllearning.mapper: DEBUG
+
