@@ -50,4 +50,14 @@ public class UserTest {
             System.out.println("result:" + u);
         }
     }
+
+    @Test
+    public void testGetUserListByCondition() throws IOException{
+        User user = new User();
+        user.setUsername("libai");
+        List<User> userList = userMapper.getUserListByCondition(user);
+        for(User u:userList){
+            System.out.println("result:" + u);
+        }
+    }
 }

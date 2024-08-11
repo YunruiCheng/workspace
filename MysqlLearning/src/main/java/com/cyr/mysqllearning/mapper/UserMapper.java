@@ -2,6 +2,7 @@ package com.cyr.mysqllearning.mapper;
 
 import com.cyr.mysqllearning.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +37,8 @@ public interface UserMapper {
      */
     List<User> getUserList();
 
+    /**
+     * 条件查询
+     */
+    List<User> getUserListByCondition(@Param("user") User user);
 }

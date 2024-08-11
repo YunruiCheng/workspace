@@ -21,4 +21,9 @@
     <select id="getUserList" resultType="com.cyr.mysqllearning.pojo.User">
         select * from t_user
     </select>
+    <select id="getUserListByCondition" resultType="com.cyr.mysqllearning.pojo.User">
+        select *
+        from t_user
+        where username like concat('%', #{user.username}, '%');
+    </select>
 </mapper>

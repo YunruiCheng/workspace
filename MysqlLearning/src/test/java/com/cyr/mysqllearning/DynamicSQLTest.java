@@ -24,7 +24,10 @@ public class DynamicSQLTest {
     private DynamicSQLMapper mapper;
     @Test
     public void testGetEmpByCondition() throws IOException {
-        Emp zhangsan = new Emp(null, "libai", null, null, null, null);
+        Dept dept = new Dept();
+        dept.setDid(2);
+        dept.setDeptName("GrowFastFunds");
+        Emp zhangsan = new Emp(null, "libai", null, null, null, dept);
         //唯一改变
         List<Emp> empByCondition = mapper.getEmpByCondition(zhangsan);
         System.out.println(empByCondition);

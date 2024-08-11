@@ -11,6 +11,17 @@ import java.util.List;
 @Repository
 public interface DynamicSQLMapper {
 
+    /**
+     * 条件查询：
+     *  1.对于如果需要用到Emp内嵌套类Dept的字段查询，也是直接按【对象.字段】级联查询即可
+     *          <if test="dept != null">
+     *             <if test="dept.did != null and dept.did != ''">
+     *                 and did = #{dept.did}
+     *             </if>
+     *         </if>
+     * @param emp
+     * @return
+     */
     List<Emp> getEmpByCondition(Emp emp);
 
     /**

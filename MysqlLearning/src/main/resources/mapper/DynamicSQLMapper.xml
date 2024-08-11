@@ -35,6 +35,11 @@
         <if test="email != null and email !=''">
             and email = #{email}
         </if>
+        <if test="dept != null">
+            <if test="dept.did != null and dept.did != ''">
+                and did = #{dept.did}
+            </if>
+        </if>
     </select>
 
 <!--    &lt;!&ndash;List<Emp> getEmpByCondition(Emp emp);&ndash;&gt;-->
